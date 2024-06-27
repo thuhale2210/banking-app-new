@@ -6,6 +6,7 @@ import React from 'react'
 import { sidebarLinks } from '@/constants'
 import { cn } from '@/lib/utils'
 import { usePathname } from 'next/navigation'
+import Footer from './Footer'
 
 const Sidebar = ({ user }: SiderbarProps) => {
     const pathName = usePathname()
@@ -15,7 +16,7 @@ const Sidebar = ({ user }: SiderbarProps) => {
             <nav className='flex flex-col gap-4'>
                 <Link href='/' className='mb-12 cursor-pointer items-center gap-2'>
                     <Image src='/icons/logo.svg' width={24} height={24} alt='Logo' className='size-[24px] max-xl:size-14' />
-                    <h1 className='sidebar-logo'>Golden Pig</h1>
+                    <h1 className='sidebar-logo'>Finance Finesse</h1>
                 </Link>
 
                 {sidebarLinks.map((item) => {
@@ -34,7 +35,7 @@ const Sidebar = ({ user }: SiderbarProps) => {
 
                 USER
             </nav>
-            FOOTER
+            <Footer user={user} type='desktop'/>
         </section>
     )
 }

@@ -10,8 +10,8 @@ const ibmPlexSerif = IBM_Plex_Serif({
 })
 
 export const metadata: Metadata = {
-  title: "Golden Pig",
-  description: "Golden Pig is a modern banking platform and financial management tool for everyone",
+  title: "Finance Finesse",
+  description: "Finance Finesse is a modern banking platform and financial management tool for everyone",
   icons: {
     icon: "/icons/logo.svg",
   }
