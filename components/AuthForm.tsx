@@ -13,6 +13,7 @@ import { authFormSchema } from '@/lib/utils'
 import { Loader2 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { signUp, signIn } from '@/lib/actions/user.actions'
+import PlaidLink from './PlaidLink'
 
 type AuthFormProps = {
     type: string
@@ -37,11 +38,23 @@ const AuthForm = ({ type }: AuthFormProps) => {
     // 2. Define a submit handler.
     const onSubmit = async (data: z.infer<typeof formSchema>) => {
         setIsLoading(true)
+
         try {
             // Sign up with Appwrite & create plaid link token
-
+            const userData = {
+                firstName: data.firstName!,
+                lastName: data.lastName!,
+                address1: data.address1!,
+                city: data.city!,
+                state: data.state!,
+                postalCode: data.postalCode!,
+                dateOfBirth: data.dateOfBirth!,
+                ssn: data.ssn!,
+                email: data.email,
+                password: data.password
+            }
             if (type === 'sign-up') {
-                const newUser = await signUp(data)
+                const newUser = await signUp(userData)
 
                 setUser(newUser)
             }
@@ -81,7 +94,7 @@ const AuthForm = ({ type }: AuthFormProps) => {
             </header>
             {user ? (
                 <div className='flex flex-col gap-4'>
-                    {/* PLAID LINK */}
+                    <PlaidLink user={user} variant='primary' />
                 </div>
             ) : (
                 <>
@@ -102,7 +115,7 @@ const AuthForm = ({ type }: AuthFormProps) => {
                                     </div>
                                     <div className='flex gap-4'>
                                         <CustomInput control={form.control} name='dateOfBirth' label='Date of Birth' placeholder='YYYY-MM-DD' />
-                                        <CustomInput control={form.control} name='sin' label='Social Insurance Number (SIN)' placeholder='Example: 1234' />
+                                        <CustomInput control={form.control} name='ssn' label='Social Insurance Number' placeholder='Example: 1234' />
                                     </div>
                                 </>
                             )}
