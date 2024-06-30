@@ -4,6 +4,7 @@ import TransactionsTable from '@/components/TransactionsTable';
 import { getAccount, getAccounts } from '@/lib/actions/bank.actions';
 import { getLoggedInUser } from '@/lib/actions/user.actions';
 import { formatAmount } from '@/lib/utils';
+import { GetServerSideProps } from 'next';
 import React from 'react'
 
 const TransactionHistory = async ({ searchParams: { id, page } }: SearchParamProps) => {
@@ -34,7 +35,7 @@ const TransactionHistory = async ({ searchParams: { id, page } }: SearchParamPro
         <div className='transactions-account'>
           <div className='flex flex-col gap-2'>
             <h2 className='text-18 font-bold text-white'>
-              1             {account?.data.name}
+              {account?.data.name}
             </h2>
             <p className='text-14 text-blue-25'>
               {account?.data.officialName}
