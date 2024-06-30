@@ -11,6 +11,7 @@ const Footer = ({ user, type = 'desktop' }: FooterProps) => {
 
         if (signedOut) router.push('/sign-in')
     }
+    console.log('user', user.firstName, user.lastName)
 
     return (
         <footer className='footer'>
@@ -22,7 +23,7 @@ const Footer = ({ user, type = 'desktop' }: FooterProps) => {
 
             <div className={type === 'mobile' ? 'footer_email-mobile' : 'footer_email'}>
                 <h1 className='text-14 truncate font-semibold text-gray-700'>
-                    {user?.name}
+                    {user?.firstName} {user?.lastName}
                 </h1>
                 <p className='text-14 truncate font-normal text-gray-600'>
                     {user?.email}
