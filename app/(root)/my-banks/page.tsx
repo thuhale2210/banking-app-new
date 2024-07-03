@@ -9,8 +9,8 @@ const MyBanks = async () => {
   const accounts = await getAccounts({ userId: loggedIn.$id });
 
   return (
-    <section className='flex'>
-      <div className='my-banks'>
+    <section className='my-banks-home'>
+      <div className='my-banks-content'>
         <HeaderBox
           title='My Bank Accounts'
           subtext='View and manage your bank accounts'

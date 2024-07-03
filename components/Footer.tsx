@@ -14,26 +14,23 @@ const Footer = ({ user, type = 'desktop' }: FooterProps) => {
     console.log('user', user.firstName, user.lastName)
 
     return (
-        <footer className='footer'>
-            <div className={type === 'mobile' ? ' footer_name-mobile' : 'footer_name'}>
-                <p className='text-xl font-bold text-blue-500'>
+        <footer className="flex flex-col justify-center items-center rounded-2xl bg-[#1E1E26] bg-opacity-60 py-4">
+            <div className={type === 'mobile' ? 'footer_name-mobile' : 'footer_name'}>
+                <p className="text-4xl font-bold text-white">
                     {user?.firstName[0]}
                 </p>
             </div>
-
-            <div className={type === 'mobile' ? 'footer_email-mobile' : 'footer_email'}>
-                <h1 className='text-14 truncate font-semibold text-gray-700'>
-                    {user?.firstName} {user?.lastName}
-                </h1>
-                <p className='text-14 truncate font-normal text-gray-600'>
-                    {user?.email}
-                </p>
+            <div className="text-white/80 font-semibold text-lg mt-2">
+                {user?.firstName} {user?.lastName}
             </div>
-
-            <div className='footer_image' onClick={handleSignOut}>
+            <div className="text-white/80 text-base mt-1">
+                {user?.email}
+            </div>
+            <div onClick={handleSignOut} className='footer_image'>
                 <Image src='/icons/logout.svg' fill alt='log out' />
             </div>
         </footer>
+
     )
 }
 

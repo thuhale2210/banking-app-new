@@ -1,6 +1,7 @@
 import HeaderBox from '@/components/Header'
 import RecentTransactions from '@/components/RecentTransactions'
 import RightSidebar from '@/components/RightSidebar'
+import SpendingBox from '@/components/SpendingBox'
 import TotalBalanceBox from '@/components/TotalBalanceBox'
 import { getAccount, getAccounts } from '@/lib/actions/bank.actions'
 import { getLoggedInUser } from '@/lib/actions/user.actions'
@@ -16,7 +17,7 @@ const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
     if (!accounts) return;
 
     const accountsData = accounts.data;
-    
+
     const appwriteItemId = (id as string) || accountsData[0]?.appwriteItemId;
 
     const account = await getAccount({ appwriteItemId });
@@ -31,23 +32,27 @@ const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
                         user={loggedIn.firstName || 'Guest'}
                         subtext='Access and manage your finances with ease'
                     />
-                    <TotalBalanceBox
-                        accounts={accountsData}
-                        totalBanks={accountsData.length}
-                        totalCurrentBalance={accounts.totalCurrentBalance} />
+                    <div className='flex'>
+                        <TotalBalanceBox
+                            accounts={accountsData}
+                            totalBanks={accountsData.length}
+                            totalCurrentBalance={accounts.totalCurrentBalance} />
+
+                        <SpendingBox transactions={account?.transactions} />
+                    </div>
                 </header>
 
                 <RecentTransactions
                     accounts={accountsData}
                     transactions={account?.transactions}
                     appwriteItemId={appwriteItemId}
-                    page = {currentPage} />
+                    page={currentPage} />
 
             </div>
-            <RightSidebar
-                user={loggedIn}
-                transactions={account?.transactions}
-                banks={accountsData.slice(0, 2)} />
+            {/* <RightSidebar
+                    user={loggedIn}
+                    transactions={account?.transactions}
+                    banks={accountsData.slice(0, 2)} /> */}
         </section>
     );
 };

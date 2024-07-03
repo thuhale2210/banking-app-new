@@ -23,7 +23,7 @@ const config = {
         fill: {
           1: "rgba(255, 255, 255, 0.10)",
         },
-        bankGradient: "#0179FE",
+        bankGradient: "#57497E",
         indigo: {
           500: "#6172F3",
           700: "#3538CD",
@@ -55,9 +55,18 @@ const config = {
         sky: {
           1: "#F3F9FF",
         },
+        purple: {
+          25: "#F9F6FF",
+          100: "#F1E9FF",
+          200: "#E7E0FF",
+          500: "#9E7FE6",
+          600: "#7963B6",
+          700: "#57497E",
+        },
         black: {
           1: "#00214F",
           2: "#344054",
+          3: "#17171f"
         },
         gray: {
           25: "#FCFCFD",
@@ -70,7 +79,7 @@ const config = {
         },
       },
       backgroundImage: {
-        "bank-gradient": "linear-gradient(90deg, #0179FE 0%, #4893FF 100%)",
+        "bank-gradient": "linear-gradient(90deg, #57497E 0%, #7963B6 100%)",
         "gradient-mesh": "url('/icons/gradient-mesh.svg')",
         "bank-green-gradient":
           "linear-gradient(90deg, #01797A 0%, #489399 100%)",
@@ -88,6 +97,39 @@ const config = {
         "ibm-plex-serif": "var(--font-ibm-plex-serif)",
       },
       keyframes: {
+        moveHorizontal: {
+          "0%": {
+            transform: "translateX(-50%) translateY(-10%)",
+          },
+          "50%": {
+            transform: "translateX(50%) translateY(10%)",
+          },
+          "100%": {
+            transform: "translateX(-50%) translateY(-10%)",
+          },
+        },
+        moveInCircle: {
+          "0%": {
+            transform: "rotate(0deg)",
+          },
+          "50%": {
+            transform: "rotate(180deg)",
+          },
+          "100%": {
+            transform: "rotate(360deg)",
+          },
+        },
+        moveVertical: {
+          "0%": {
+            transform: "translateY(-50%)",
+          },
+          "50%": {
+            transform: "translateY(50%)",
+          },
+          "100%": {
+            transform: "translateY(-50%)",
+          },
+        },
         "accordion-down": {
           from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
@@ -98,6 +140,11 @@ const config = {
         },
       },
       animation: {
+        first: "moveVertical 30s ease infinite",
+        second: "moveInCircle 20s reverse infinite",
+        third: "moveInCircle 40s linear infinite",
+        fourth: "moveHorizontal 40s ease infinite",
+        fifth: "moveInCircle 20s ease infinite",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },

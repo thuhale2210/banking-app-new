@@ -3,6 +3,7 @@ import { type ClassValue, clsx } from "clsx";
 import qs from "query-string";
 import { twMerge } from "tailwind-merge";
 import { z } from "zod";
+import { format } from 'date-fns'
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -106,10 +107,10 @@ export function getAccountTypeColors(type: AccountTypes) {
   switch (type) {
     case "depository":
       return {
-        bg: "bg-blue-25",
-        lightBg: "bg-blue-100",
-        title: "text-blue-900",
-        subText: "text-blue-700",
+        bg: "bg-purple-25",
+        lightBg: "bg-purple-100",
+        title: "text-purple-900",
+        subText: "text-purple-700",
       };
 
     case "credit":
@@ -130,9 +131,7 @@ export function getAccountTypeColors(type: AccountTypes) {
   }
 }
 
-export function countTransactionCategories(
-  transactions: Transaction[]
-): CategoryCount[] {
+export function countTransactionCategories(transactions: Transaction[]): CategoryCount[] {
   const categoryCounts: { [category: string]: number } = {};
   let totalCount = 0;
 
@@ -167,6 +166,37 @@ export function countTransactionCategories(
   aggregatedCategories.sort((a, b) => b.count - a.count);
 
   return aggregatedCategories;
+}
+
+// Utility function to get the start of the current month
+function getStartOfCurrentMonth() {
+  const now = new Date();
+  return new Date(now.getFullYear(), now.getMonth(), 1);
+}
+
+export function calculateSpendingByCategory(transactions: Transaction[]) {
+  const categorySpending: { [category: string]: number } = {};
+  const currentMonth = format(new Date(), 'yyyy-MM')
+
+  // Iterate over each transaction and calculate the spending by category
+  transactions && transactions.forEach((transaction) => {
+    // Extract the month from the transaction date
+    const transactionMonth = format(new Date(transaction.date), 'yyyy-MM')
+
+    // If the transaction month is the current month, calculate the spending by category
+    if (transactionMonth === currentMonth) {
+      const category = transaction.category;
+
+      // If the category exists in the categorySpending object, increment its amount
+      if (categorySpending.hasOwnProperty(category)) {
+        categorySpending[category] += transaction.amount;
+      } else {
+        categorySpending[category] = transaction.amount;
+      }
+    }
+  });
+
+  return categorySpending;
 }
 
 export function extractCustomerIdFromUrl(url: string) {

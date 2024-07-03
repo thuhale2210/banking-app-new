@@ -19,7 +19,6 @@
         "chart.js": "^4.4.3",
         "class-variance-authority": "^0.7.0",
         "clsx": "^2.1.1",
-        "date-fns": "^3.6.0",
         "dwolla-v2": "^3.4.0",
         "framer-motion": "^11.2.12",
         "lucide-react": "^0.396.0",
@@ -3772,15 +3771,6 @@
       },
       "funding": {
         "url": "https://github.com/sponsors/ljharb"
-      }
-    },
-    "node_modules/date-fns": {
-      "version": "3.6.0",
-      "resolved": "https://registry.npmjs.org/date-fns/-/date-fns-3.6.0.tgz",
-      "integrity": "sha512-fRHTG8g/Gif+kSh50gaGEdToemgfj74aRX3swtiouboip5JDLAyDE9F11nHMIcvOaXeOC6D7SpNhi7uFyB7Uww==",
-      "funding": {
-        "type": "github",
-        "url": "https://github.com/sponsors/kossnocorp"
       }
     },
     "node_modules/debug": {
@@ -8083,9 +8073,9 @@
       }
     },
     "node_modules/update-browserslist-db": {
-      "version": "1.1.0",
-      "resolved": "https://registry.npmjs.org/update-browserslist-db/-/update-browserslist-db-1.1.0.tgz",
-      "integrity": "sha512-EdRAaAyk2cUE1wOf2DkEhzxqOQvFOoRJFNS6NeyJ01Gp2beMRpBAINjM2iDXE3KCuKhwnvHIQCJm6ThL2Z+HzQ==",
+      "version": "1.0.16",
+      "resolved": "https://registry.npmjs.org/update-browserslist-db/-/update-browserslist-db-1.0.16.tgz",
+      "integrity": "sha512-KVbTxlBYlckhF5wgfyZXTWnMn7MMZjMu9XG8bPlliUOP9ThaF4QnhP8qrjrH7DRzHfSk0oQv1wToW+iA5GajEQ==",
       "funding": [
         {
           "type": "opencollective",

@@ -19,6 +19,11 @@ export const sidebarLinks = [
     route: "/payment-transfer",
     label: "Transfer Funds",
   },
+  {
+    imgURL: "/icons/home.svg",
+    route: "/financial-insights",
+    label: "Financial Insights",
+  },
 ];
 
 // good_user / good_password - Bank of America
@@ -51,15 +56,15 @@ export const ITEMS = [
 
 export const topCategoryStyles = {
   "Food and Drink": {
-    bg: "bg-blue-25",
-    circleBg: "bg-blue-100",
+    bg: "bg-purple-25",
+    circleBg: "bg-purple-100",
     text: {
-      main: "text-blue-900",
-      count: "text-blue-700",
+      main: "text-purple-900",
+      count: "text-purple-700",
     },
     progress: {
-      bg: "bg-blue-100",
-      indicator: "bg-blue-700",
+      bg: "bg-purple-100",
+      indicator: "bg-purple-700",
     },
     icon: "/icons/monitor.svg",
   },
@@ -130,14 +135,14 @@ export const transactionCategoryStyles = {
   },
   Travel: {
     borderColor: "border-[#0047AB]",
-    backgroundColor: "bg-blue-500",
-    textColor: "text-blue-700",
+    backgroundColor: "bg-purple-500",
+    textColor: "text-purple-700",
     chipBackgroundColor: "bg-[#E8EFFA]",
   },
   default: {
     borderColor: "",
-    backgroundColor: "bg-blue-500",
-    textColor: "text-blue-700",
+    backgroundColor: "bg-purple-500",
+    textColor: "text-purple-700",
     chipBackgroundColor: "bg-inherit",
   },
 };
