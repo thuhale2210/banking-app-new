@@ -168,12 +168,6 @@ export function countTransactionCategories(transactions: Transaction[]): Categor
   return aggregatedCategories;
 }
 
-// Utility function to get the start of the current month
-function getStartOfCurrentMonth() {
-  const now = new Date();
-  return new Date(now.getFullYear(), now.getMonth(), 1);
-}
-
 export function calculateSpendingByCategory(transactions: Transaction[]) {
   const categorySpending: { [category: string]: number } = {};
   const currentMonth = format(new Date(), 'yyyy-MM')

@@ -126,6 +126,8 @@ export const signOut = async () => {
         cookies().delete('appwrite-session');
 
         await account.deleteSession('current');
+        
+        console.log('Signed out successfully');
     } catch (error) {
         return null;
     }
@@ -274,8 +276,6 @@ export const getBank = async ({ documentId }: getBankProps) => {
         console.error('An error occurred while getting the bank:', error);
     }
 };
-
-
 
 export const getBankByAccountId = async ({ accountId }: getBankByAccountIdProps) => {
     try {

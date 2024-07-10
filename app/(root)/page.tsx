@@ -49,10 +49,6 @@ const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
                     page={currentPage} />
 
             </div>
-            {/* <RightSidebar
-                    user={loggedIn}
-                    transactions={account?.transactions}
-                    banks={accountsData.slice(0, 2)} /> */}
         </section>
     );
 };

@@ -37,7 +37,7 @@ const PolarAreaChart: React.FC<PolarAreaChartProps> = ({ categorySpending }) => 
                 plugins: {
                     legend: {
                         display: false
-                    }
+                    },
                 }
             }}
         />

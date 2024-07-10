@@ -269,6 +269,13 @@ declare interface PaymentTransferFormProps {
 }
 
 // Actions
+declare interface WarningModalProps {
+  open: boolean;
+  onClose: () => void;
+  onContinue: () => void;
+  onSignOut: () => void;
+}
+
 declare interface getAccountsProps {
   userId: string;
 }
