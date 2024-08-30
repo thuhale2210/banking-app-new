@@ -6,11 +6,11 @@ import { PolarArea } from 'react-chartjs-2'
 
 ChartJS.register(ArcElement, Tooltip, Legend, RadialLinearScale)
 
-interface PolarAreaChartProps {
+interface SpendingPolarAreaChartProps {
     categorySpending: { [category: string]: number }
 }
 
-const PolarAreaChart: React.FC<PolarAreaChartProps> = ({ categorySpending }) => {
+const SpendingPolarAreaChart: React.FC<SpendingPolarAreaChartProps> = ({ categorySpending }) => {
     const categories = Object.keys(categorySpending)
     const data = {
         labels: categories,
@@ -44,4 +44,4 @@ const PolarAreaChart: React.FC<PolarAreaChartProps> = ({ categorySpending }) => 
     )
 }
 
-export default PolarAreaChart
+export default SpendingPolarAreaChart

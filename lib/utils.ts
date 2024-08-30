@@ -2,8 +2,15 @@
 import { type ClassValue, clsx } from "clsx";
 import qs from "query-string";
 import { twMerge } from "tailwind-merge";
-import { z } from "zod";
+import { number, string, z } from "zod";
 import { format } from 'date-fns'
+import { createAdminClient } from "./appwrite";
+import { ID } from "node-appwrite";
+
+const {
+  APPWRITE_DATABASE_ID: DATABASE_ID,
+  APPWRITE_BUDGETLIMIT_COLLECTION_ID: BUDGETLIMIT_COLLECTION_ID,
+} = process.env;
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -193,6 +200,73 @@ export function calculateSpendingByCategory(transactions: Transaction[]) {
   return categorySpending;
 }
 
+export function calculateSpendingLastSixMonths(transactions: Transaction[]) {
+  const spendingData: { [month: string]: number } = {};
+  const today = new Date();
+
+  // Initialize income data for the last 6 months
+  for (let i = 0; i < 6; i++) {
+    const date = new Date(today.getFullYear(), today.getMonth() - i, 1);
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Ensure month is in MM format
+    const year = String(date.getFullYear()).slice(-2); // Get last two digits of the year
+    const formattedDate = `${month}-${year}`;
+    spendingData[formattedDate] = 0;
+  }
+
+  // Calculate spending per month
+  transactions.forEach(transaction => {
+    const transactionDate = new Date(transaction.date);
+    const month = String(transactionDate.getMonth() + 1).padStart(2, '0');
+    const year = String(transactionDate.getFullYear()).slice(-2);
+    const formattedDate = `${month}-${year}`;
+
+    if (spendingData.hasOwnProperty(formattedDate)) {
+      spendingData[formattedDate] -= transaction.amount;
+    }
+  });
+
+  // Convert spendingData object to arrays for the chart
+  const labels = Object.keys(spendingData).reverse();
+  const data = Object.values(spendingData).reverse();
+
+  return { labels, data };
+}
+
+export function calculateIncomeLastSixMonths(transactions: Transaction[]) {
+  const incomeData: { [month: string]: number } = {};
+  const today = new Date();
+
+  // Initialize income data for the last 6 months
+  for (let i = 0; i < 6; i++) {
+    const date = new Date(today.getFullYear(), today.getMonth() - i, 1);
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Ensure month is in MM format
+    const year = String(date.getFullYear()).slice(-2); // Get last two digits of the year
+    const formattedDate = `${month}-${year}`;
+    incomeData[formattedDate] = 0;
+  }
+
+  // Calculate income per month
+  transactions.forEach(transaction => {
+    if (transaction.type === 'income') {
+      const transactionDate = new Date(transaction.date);
+      const month = String(transactionDate.getMonth() + 1).padStart(2, '0');
+      const year = String(transactionDate.getFullYear()).slice(-2);
+      const formattedDate = `${month}-${year}`;
+
+      if (incomeData.hasOwnProperty(formattedDate)) {
+        incomeData[formattedDate] += transaction.amount;
+      }
+    }
+  });
+
+  // Convert incomeData object to arrays for the chart
+  const labels = Object.keys(incomeData).reverse();
+  const data = Object.values(incomeData).reverse();
+
+  return { labels, data };
+}
+
+
 export function extractCustomerIdFromUrl(url: string) {
   // Split the URL string by '/'
   const parts = url.split("/");
@@ -233,3 +307,23 @@ export const authFormSchema = (type: string) => z.object({
   email: z.string().email(),
   password: z.string().min(8),
 })
+
+// Budget management
+export const setBudgetLimit = async (userId: string, category: string, limit: number) => {
+  try {
+    const { database } = await createAdminClient();
+
+    const result = await database.createDocument(
+      DATABASE_ID!,
+      BUDGETLIMIT_COLLECTION_ID!,
+      ID.unique(),
+      { userId, category, limit }
+    );
+
+    console.log('Budget limit set successfully:', result);
+    return result;
+  } catch (error) {
+    console.error('Error setting budget limit:', error);
+    throw new Error('Could not set budget limit.');
+  }
+};
