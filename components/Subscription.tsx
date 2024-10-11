@@ -43,12 +43,3 @@ const Subscription: React.FC<ISubscription> = ({ $id, subscription, amount, onEd
 }
 
 export default Subscription
-
-// < div className = "gap-4 flex p-4 rounded-xl border" >
-//     <div className="flex w-full flex-1 flex-col gap-2">
-//         <div className="text-14 flex justify-between">
-//             <h2 className="font-medium">{subscription}</h2>
-//             <h3 className="font-medium">{amount}</h3>
-//         </div>
-//     </div>
-// </div >

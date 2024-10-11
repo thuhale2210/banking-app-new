@@ -49,16 +49,20 @@ const BudgetManagement: React.FC<IBudgetLimit> = ({ $id, category, amount }) => 
                     subtext='Manage your budget limits'
                 />
                 <div className='grid grid-cols-2 gap-6'>
-                    {categories.map(category => (
-                        <BudgetCategory
-                            key={category.$id}
-                            $id={category.$id}
-                            category={category.category}
-                            amount={category.amount}
-                            onEdit={handleEdit}
-                            onDelete={handleDelete}
-                        />
-                    ))}
+                    {categories?.length > 0 ? (
+                        categories.map(category => (
+                            <BudgetCategory
+                                key={category.$id}
+                                $id={category.$id}
+                                category={category.category}
+                                amount={category.amount}
+                                onEdit={handleEdit}
+                                onDelete={handleDelete}
+                            />
+                        ))
+                    ) : (
+                        <p>No categories available</p>
+                    )}
                 </div>
                 <Link href='/financial-insights/budget-management/create'>
                     <Button className='payment-transfer_btn'>

@@ -23,7 +23,7 @@ const BudgetCategory: React.FC<IBudgetLimit> = ({ $id, category, amount, onEdit,
             </div>
 
             <div className='mt-2'>
-                <Link href={`/financial-insights/subscription-management/edit/${$id}`}>
+                <Link href={`/financial-insights/budget-management/edit/${$id}`}>
                     <Button
                         className='ml-2 h-14 border rounded-xl text-slate-900'
                         onClick={() => onEdit?.($id)}>

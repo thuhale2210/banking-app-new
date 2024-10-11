@@ -41,8 +41,8 @@ export async function POST(req: Request) {
 
 export async function GET() {
     try {
-        const category = await fetchCategory();
-        return NextResponse.json({ category });
+        const categories = await fetchCategory();
+        return NextResponse.json({ categories });
     } catch (error) {
         return NextResponse.json({ error: "Failed to fetch the category" }, { status: 500 });
     }

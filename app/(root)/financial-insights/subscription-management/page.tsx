@@ -34,8 +34,8 @@ const SubscriptionPage = () => {
 
     const handleDelete = async (id: string) => {
         try {
-            await fetch(`/api/subscription/${id}`, {method: 'DELETE'})
-            setSubscriptions(subscriptions.filter(subscription => subscription.$id !== id))    
+            await fetch(`/api/subscription/${id}`, { method: 'DELETE' })
+            setSubscriptions(subscriptions.filter(subscription => subscription.$id !== id))
         } catch (error) {
             setError("Failed to delete the subscription. Please try to delete again.")
         }
@@ -49,17 +49,21 @@ const SubscriptionPage = () => {
                     subtext='Manage your monthly subscriptions'
                 />
                 <div className='grid grid-cols-2 gap-6'>
-                    {subscriptions.map(subscription => (
-                        <Subscription
-                            key={subscription.$id}
-                            $id={subscription.$id}
-                            subscription={subscription.subscription}
-                            amount={subscription.amount}
-                            onEdit={handleEdit}
-                            onDelete={handleDelete}
-                            isManager={false}
-                        />
-                    ))}
+                    {subscriptions?.length > 0 ? (
+                        subscriptions?.map(subscription => (
+                            <Subscription
+                                key={subscription.$id}
+                                $id={subscription.$id}
+                                subscription={subscription.subscription}
+                                amount={subscription.amount}
+                                onEdit={handleEdit}
+                                onDelete={handleDelete}
+                                isManager={false}
+                            />
+                        ))
+                    ) : (
+                        <p>No subscriptions found</p>
+                    )}
                 </div>
                 <Link href='/financial-insights/subscription-management/create'>
                     <Button className='payment-transfer_btn'>
