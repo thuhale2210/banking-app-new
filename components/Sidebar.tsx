@@ -15,7 +15,7 @@ const Sidebar = ({ user }: SiderbarProps) => {
     return (
         <section className='sidebar'>
             <nav className='flex flex-col gap-4'>
-                <Link href='/' className='mb-8 cursor-pointer items-center gap-2'>
+                <Link href='/' className='my-8 ml-4 cursor-pointer items-center gap-2'>
                     <h1 className='sidebar-logo'>Finance Finesse</h1>
                 </Link>
 

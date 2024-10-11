@@ -1,16 +1,10 @@
 /* eslint-disable no-prototype-builtins */
+
 import { type ClassValue, clsx } from "clsx";
 import qs from "query-string";
 import { twMerge } from "tailwind-merge";
 import { number, string, z } from "zod";
 import { format } from 'date-fns'
-import { createAdminClient } from "./appwrite";
-import { ID } from "node-appwrite";
-
-const {
-  APPWRITE_DATABASE_ID: DATABASE_ID,
-  APPWRITE_BUDGETLIMIT_COLLECTION_ID: BUDGETLIMIT_COLLECTION_ID,
-} = process.env;
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -308,22 +302,20 @@ export const authFormSchema = (type: string) => z.object({
   password: z.string().min(8),
 })
 
-// Budget management
-export const setBudgetLimit = async (userId: string, category: string, limit: number) => {
-  try {
-    const { database } = await createAdminClient();
-
-    const result = await database.createDocument(
-      DATABASE_ID!,
-      BUDGETLIMIT_COLLECTION_ID!,
-      ID.unique(),
-      { userId, category, limit }
-    );
-
-    console.log('Budget limit set successfully:', result);
-    return result;
-  } catch (error) {
-    console.error('Error setting budget limit:', error);
-    throw new Error('Could not set budget limit.');
-  }
-};
+export const budgetFormSchema = z.object({
+  limits: z.object({
+      "Food and Drink": z.number().optional(),
+      Travel: z.number().optional(),
+      Housing: z.number().optional(),
+      Transportation: z.number().optional(),
+      "Health and Wellness": z.number().optional(),
+      "Entertainment and Recreation": z.number().optional(),
+      "Subscriptions and Memberships": z.number().optional(),
+      Education: z.number().optional(),
+      "Clothing and Personal Items": z.number().optional(),
+      Miscellaneous: z.number().optional(),
+      "Childcare and Family Expenses": z.number().optional(),
+      "Debt Payment": z.number().optional(),
+      Transfer: z.number().optional(),
+  }),
+});

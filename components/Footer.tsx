@@ -11,10 +11,9 @@ const Footer = ({ user, type = 'desktop' }: FooterProps) => {
 
         if (signedOut) router.push('/sign-in')
     }
-    console.log('user', user.firstName, user.lastName)
 
     return (
-        <footer className="flex flex-col justify-center items-center rounded-2xl bg-[#1E1E26] bg-opacity-60 py-4">
+        <footer className="flex flex-col justify-center items-center rounded-2xl bg-[#1E1E26] bg-opacity-60 py-4 mb-4 mr-2">
             <div className={type === 'mobile' ? 'footer_name-mobile' : 'footer_name'}>
                 <p className="text-4xl font-bold text-white">
                     {user?.firstName[0]}

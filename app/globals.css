@@ -109,7 +109,7 @@
 
   /* Home */
   .home {
-    @apply no-scrollbar flex max-h-screen w-full flex-col gap-8 overflow-y-scroll p-2 xl:py-2;
+    @apply no-scrollbar flex max-h-screen w-full flex-col gap-8 overflow-y-hidden p-2 xl:py-2;
   }
 
   .home-content {
@@ -156,9 +156,9 @@
     @apply custom-scrollbar mb-8 flex w-full flex-nowrap;
   }
 
-  /* Right sidebar */
-  .right-sidebar {
-    @apply no-scrollbar hidden h-screen max-h-screen flex-col border-l border-gray-200 xl:flex w-[355px] xl:overflow-y-scroll !important;
+  /* Sidebar */
+  .sidebar {
+    @apply no-scrollbar hidden h-screen max-h-screen flex-col border-l border-gray-200 xl:flex w-1/5 xl:overflow-y-hidden !important;
   }
 
   .profile-banner {
@@ -186,7 +186,7 @@
   }
 
   .banks {
-    @apply flex flex-col justify-between gap-8 px-6 py-8;
+    @apply flex flex-col justify-between gap-8 p-6 rounded-xl border border-gray-200 shadow-chart overflow-hidden;
   }
 
   /* My Banks */
@@ -345,7 +345,7 @@
   }
 
   .financial-insights-content {
-    @apply no-scrollbar flex w-full flex-col gap-8 px-5 sm:px-8 py-7 lg:py-12 xl:max-h-screen xl:overflow-y-scroll;
+    @apply no-scrollbar flex w-full flex-col gap-8 px-5 sm:px-8 py-7 lg:py-12 xl:max-h-screen xl:overflow-y-hidden;
   }
 
   /* Root Layout */
@@ -385,7 +385,7 @@
 
   /* Sidebar */
   .sidebar {
-    @apply sticky left-0 top-0 flex h-screen min-w-[300px] w-1/6 flex-col justify-between pt-8 text-white max-md:hidden sm:p-4 xl:p-6 2xl:w-[355px];
+    @apply sticky left-0 top-0 flex h-screen min-w-[300px] w-1/6 flex-col justify-between text-white max-md:hidden sm:px-4 xl:px-4 2xl:w-[355px];
   }
 
   .sidebar-logo {
@@ -404,3 +404,5 @@
     @apply text-16 font-semibold text-white/80 max-xl:hidden;
   }
 }
+
+/* Budget Management */

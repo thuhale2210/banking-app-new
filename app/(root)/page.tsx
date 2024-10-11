@@ -1,6 +1,5 @@
 import HeaderBox from '@/components/Header'
 import RecentTransactions from '@/components/RecentTransactions'
-import RightSidebar from '@/components/RightSidebar'
 import SpendingBox from '@/components/SpendingBox'
 import TotalBalanceBox from '@/components/TotalBalanceBox'
 import { getAccount, getAccounts } from '@/lib/actions/bank.actions'
@@ -38,7 +37,9 @@ const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
                             totalBanks={accountsData.length}
                             totalCurrentBalance={accounts.totalCurrentBalance} />
 
-                        <SpendingBox transactions={account?.transactions} />
+                        <SpendingBox
+                            type='spendingThisMonth'
+                            transactions={account?.transactions} />
                     </div>
                 </header>
 

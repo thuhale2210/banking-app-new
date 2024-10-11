@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import Subscription from './Subscription'
 import Link from 'next/link';
 import { Button } from './ui/button';
+import { sub } from 'date-fns';
 
 interface ISubscription {
   $id: string;
@@ -38,16 +39,16 @@ const SubscriptionsManager = () => {
   }, [])
 
   return (
-    <section className='banks mt-6'>
+    <section className='banks mt-8'>
       <div className='flex flex-1 flex-col gap-6'>
-        <h2 className='header-2'>Current Subscriptions</h2>
+        <h2 className='header-2'>Monthly Subscriptions</h2>
         <div className='space-y-5'>
           {error && <p className='text-red-500'>{error}</p>}
           {isLoading ? (
             <p className='text-slate-700 italic'>Loading subscriptions...</p>
           ) : subscriptions?.length > 0 ? (
             <div className='text-slate-900'>
-              {subscriptions?.map(subscription => (
+              {subscriptions?.slice(0, 4).map(subscription => (
                 <Subscription
                   key={subscription.$id}
                   $id={subscription.$id}
@@ -63,7 +64,7 @@ const SubscriptionsManager = () => {
         </div>
         <Link href='/financial-insights/subscription-management'>
           <Button className='payment-transfer_btn'>
-            Manage Subscriptions
+            {subscriptions?.length > 4 ? 'View all subscriptions' : 'Manage subscription'}
           </Button>
         </Link>
       </div>

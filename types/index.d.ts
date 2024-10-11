@@ -99,7 +99,20 @@ declare type AccountTypes =
   | "investment"
   | "other";
 
-declare type Category = "Food and Drink" | "Travel" | "Transfer";
+declare type Category = 
+| "Food and Drink" 
+| "Travel" 
+| "Housing" 
+| "Transportation" 
+| "Health and Wellness" 
+| "Entertainment and Recreation" 
+| "Subscriptions and Memberships" 
+| "Education" 
+| "Clothing and Personal Items" 
+| "Miscellaneous" 
+| "Childcare and Family Expenses" 
+| "Debt Payment" 
+| "Transfer";
 
 declare type CategoryCount = {
   name: string;
@@ -252,6 +265,11 @@ declare interface TransactionTableProps {
 
 declare interface CategoryProps {
   category: CategoryCount;
+}
+
+declare interface SubscriptionProps {
+  subscription: string;
+  amount: number;
 }
 
 declare interface DoughnutChartProps {

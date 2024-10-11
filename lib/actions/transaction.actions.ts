@@ -41,6 +41,7 @@ export const getTransactionsByBankId = async ({ bankId }: getTransactionsByBankI
             TRANSACTION_COLLECTION_ID!,
             [Query.equal('receiverBankId', bankId)],
         )
+        // Combine sender and receiver transactions into one object and return it as a string to be parsed on the client side 
         const transactions = {
             total: senderTransactions.total + receiverTransactions.total,
             documents: [...senderTransactions.documents, ...receiverTransactions.documents]
