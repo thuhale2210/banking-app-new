@@ -4,11 +4,7 @@ import DoughnutChart from './DoughnutChart'
 
 const TotalBalanceBox = ({ accounts = [], totalBanks, totalCurrentBalance }: TotlaBalanceBoxProps) => {
     return (
-        <section className='total-balance'>
-            <div className='total-balance-chart'>
-                <DoughnutChart accounts={accounts} />
-            </div>
-
+        <section className='total-balance h-full'>
             <div className='flex flex-col ml-2 gap-6'>
                 <div className='flex flex-col gap-2 header-2'>
                     <h2>
@@ -21,6 +17,9 @@ const TotalBalanceBox = ({ accounts = [], totalBanks, totalCurrentBalance }: Tot
                 {/* <div className='total-banks-label'>
                     Bank Account: {totalBanks}
                 </div> */}
+            </div>
+            <div className='total-balance-chart'>
+                <DoughnutChart accounts={accounts} />
             </div>
         </section>
     )

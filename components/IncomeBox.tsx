@@ -13,9 +13,9 @@ const IncomeBox: React.FC<IncomeBoxProps> = ({ transactions = [] }) => {
     const totalIncome = data.reduce((acc, curr) => acc + curr, 0);
 
     return (
-        <section className='total-balance'>
+        <section className='total-balance w-1/2'>
             <div className='flex flex-col m-2 header-2'>
-                <h2>Income Last 6 Months</h2>
+                <h2>Income In The Last 6 Months</h2>
                 <div className='mt-6'>
                     <IncomeLineChart transactions={transactions} />
                 </div>

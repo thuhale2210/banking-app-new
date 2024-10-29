@@ -14,11 +14,11 @@ interface ISubscription {
 const Subscription: React.FC<ISubscription> = ({ $id, subscription, amount, onEdit, onDelete, isManager }) => {
     return (
         <div className='text-slate-900 flex'>
-            <div className="mt-2 w-96 h-14 gap-4 flex p-4 rounded-xl border">
+            <div className="mt-4 w-96 h-14 gap-4 flex p-4 rounded-xl border">
                 <div className="flex w-full flex-1 flex-col">
                     <div className="text-14 flex justify-between">
                         <h2 className="font-medium">{subscription}</h2>
-                        <h3 className="font-medium">{amount}</h3>
+                        <h3 className="font-medium">CAD {amount}</h3>
                     </div>
                 </div>
             </div>
@@ -26,13 +26,13 @@ const Subscription: React.FC<ISubscription> = ({ $id, subscription, amount, onEd
                 <div className='mt-2'>
                     <Link href={`/financial-insights/subscription-management/edit/${$id}`}>
                         <Button
-                            className='ml-2 h-14 border rounded-xl text-slate-900'
+                            className='mt-2 ml-2 h-14 border rounded-xl text-slate-900'
                             onClick={() => onEdit?.($id)}>
                             Edit
                         </Button>
                     </Link>
                     <Button
-                        className='ml-2 h-14 border rounded-xl text-slate-900'
+                        className='mt-2 ml-2 h-14 border rounded-xl text-slate-900'
                         onClick={() => onDelete?.($id)}>
                         Delete
                     </Button>

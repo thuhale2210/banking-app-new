@@ -36,7 +36,7 @@ const TransactionsTable = ({ transactions }: TransactionTableProps) => {
                 </TableRow>
             </TableHeader>
             <TableBody>
-                {transactions.map((transaction: Transaction) => {
+                {transactions?.map((transaction: Transaction) => {
                     const status = getTransactionStatus(new Date(transaction.date))
                     const amount = formatAmount(transaction.amount)
 

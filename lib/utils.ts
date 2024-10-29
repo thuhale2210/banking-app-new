@@ -3,7 +3,7 @@
 import { type ClassValue, clsx } from "clsx";
 import qs from "query-string";
 import { twMerge } from "tailwind-merge";
-import { number, string, z } from "zod";
+import { z } from "zod";
 import { format } from 'date-fns'
 
 export function cn(...inputs: ClassValue[]) {
@@ -304,18 +304,18 @@ export const authFormSchema = (type: string) => z.object({
 
 export const budgetFormSchema = z.object({
   limits: z.object({
-      "Food and Drink": z.number().optional(),
-      Travel: z.number().optional(),
-      Housing: z.number().optional(),
-      Transportation: z.number().optional(),
-      "Health and Wellness": z.number().optional(),
-      "Entertainment and Recreation": z.number().optional(),
-      "Subscriptions and Memberships": z.number().optional(),
-      Education: z.number().optional(),
-      "Clothing and Personal Items": z.number().optional(),
-      Miscellaneous: z.number().optional(),
-      "Childcare and Family Expenses": z.number().optional(),
-      "Debt Payment": z.number().optional(),
-      Transfer: z.number().optional(),
+    "Food and Drink": z.number().optional(),
+    Travel: z.number().optional(),
+    Housing: z.number().optional(),
+    Transportation: z.number().optional(),
+    "Health and Wellness": z.number().optional(),
+    "Entertainment and Recreation": z.number().optional(),
+    "Subscriptions and Memberships": z.number().optional(),
+    Education: z.number().optional(),
+    "Clothing and Personal Items": z.number().optional(),
+    Miscellaneous: z.number().optional(),
+    "Childcare and Family Expenses": z.number().optional(),
+    "Debt Payment": z.number().optional(),
+    Transfer: z.number().optional(),
   }),
 });
